@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tea-project-211819",
+  "private_key_id": "4771b9cc4d2601b4b980885d209e5031156cee1a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC6ui8JhYNohHm/\nHaB62Xya2yLwgpwUr2cm6wCqK1yLTVEUQtXZbAVOxbMfomPjY16jHFyxkyfCD13e\n8CeIhbXWqPh9Mnska17Txc3MsVjm44LVIOSQ7zJM5ryyMabPcrOBqUPXAWpxcsS3\nyX5hbbVawkg13/V+b1Snf7uUVCxjj75rvEiYFWBzxMr1o/LJJy8fTxBrEfxSMAX2\nyFJkaTs/cD2zyosMkCFTd8Iczbu1dnzP1OY/9DPdB0PzQdJff4EiMokmicIe0rpD\nGvReLemRn4LsABvsWWdJUWZ6JxtPYCZYTdMFfofnMbdKUTEUfzAO9JGLp1o8h84C\nzAz1esfpAgMBAAECggEAJMG1NCnezAJ158fYeQ5aX65e4prHSDAd/VR5yUWnXjmO\nSg99AqNnqRG0OLgx8wcy0CdrXL5Dr4jwWMwL8C0n9hVFcvmusWTcYhIYOKC5iBvF\ne5hRvfEEBQzPnME23bOtv8qW0tpRvnrR2/7TPLEIp9DCP66yJ90Y/C7h+SkXotJI\nV09GjrpYQSNRiE14jF+RymGVgcLhY+jDW381NBWrVSA63+7zGwFyLyWtTvHgj4zH\nBGmlHkjsjAgHqNE1EfpITYVCVP1RfSWnkgbZL+JuKcBKXgzZET1hVVk4BtoxhQ5D\nCSbL6MSN01LCU93H1iqQbytCU6icftzzziu+I913fQKBgQD59pWUp/H1ULEBojiP\nsMhMc0AA5k2iWiRWyvlWc9ikRD3ipHAYMiPnZPm/Q8JBoiGarVsVNhKfAA68w2DZ\nx9YM7plpW86oAxXKIqa2+M+UwNmkXKTpP/c5qoa5Hr9TwXspvQn5mkyasrEzaG9w\n0FExJGle8yTJ4QdLK4RXiEU+NQKBgQC/PKN/jibNXoIPX0GZV2HfpuCLQ0FBWhX8\n4l2EquunlvCIpdtxSplJrkfJ7vGZtT7Q0TKFqIgVlLaIoPTXh2rwuvYhTNGlHWq9\nmdDAm8hnyuKcW/dn88cRUEJA467umNPqDylB4+A5CmbVk6pSwR5Fw41BqzL7ce52\nWMjpF7/pZQKBgHmpVSCnpZK7FYwwAsudRcBAEBTgA0VUDn/YBwfXFsjNFjnrw0tj\njCoh8ZTwS+paGXUJj12BlgqhooqppcgaBcsBjtXDA5Cu/7oEp5RDAfXq74OaPAHz\nSkddAnmzx3fioimsguBkA4kAFFNrL2J/YiVDDa5TNcK0rjIeGinof5tJAoGBAIt9\nNJjm3CCyjdWemp+54DcdZu3Nqbx8dEtX5fTOI0PD0kEqEW2Kh1L6H30IoAuI63+v\nB9X8Pv7W0WnJVa4cJYHgLYXOnaB9W41es6i6OKyUjUSVxFl7tDlJvHnOWZvJt9Ej\nK+nWyIdysd2ZbwQbvvQOFmvO70n/KXwDeNCktSQNAoGAcUPRAEGPsNXxYzJhMSHs\n6luASbepacHdpPCdw5tCcXpOkDQ+ig44L5z4M6xG/XP89pw0pL8WTfeQIn8fzCNe\n9V6LNrOc9R41gL0DltD0xPb7hjOk1bP3sKYj8u5PVK2yTbk/hxJvIPJXxxKLxuEB\nihYd5WHe6wCfR8zCyhkTwi8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "tea-362@tea-project-211819.iam.gserviceaccount.com",
+  "client_id": "106673874725649732291",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tea-362%40tea-project-211819.iam.gserviceaccount.com"
+}
