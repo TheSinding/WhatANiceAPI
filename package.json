@@ -28,6 +28,9 @@
     "mocha": "mocha test/ --recursive --exit"
   },
   "dependencies": {
+    "@feathersjs/authentication": "^2.1.7",
+    "@feathersjs/authentication-jwt": "^2.0.1",
+    "@feathersjs/authentication-local": "^1.2.1",
     "@feathersjs/configuration": "^1.0.2",
     "@feathersjs/errors": "^3.3.0",
     "@feathersjs/express": "^1.2.3",
@@ -37,9 +40,9 @@
     "@google-cloud/language": "^1.2.0",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
-    "firebase-admin": "^6.0.0",
-    "firebase-functions": "^2.0.5",
+    "feathers-nedb": "^3.1.0",
     "helmet": "^3.12.1",
+    "nedb": "^1.8.0",
     "serve-favicon": "^2.5.0",
     "winston": "^3.0.0"
   },
