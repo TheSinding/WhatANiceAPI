@@ -1,19 +1,42 @@
 /* eslint-disable no-unused-vars */
+const firestore = require('../../database/firestore');
 const errors = require('@feathersjs/errors');
 class Service {
   constructor(options) {
     this.options = options || {};
-    this.database = require('../../database/firestore');
-    this.collection = this.database.collection('sentences');
+    this.events = ['counterChanged'];
+    this.collection = firestore.collection('sentences');
   }
 
   async find(params) {
     try {
-      const result = await this.collection.get();
-      const documents = await result.docs.map(doc => {
+      const { query } = params;
+
+      let limit = 25;
+      let offset = 0;
+
+      if ('offset' in query) offset = Number(query.offset);
+      if ('limit' in query) limit = Number(query.limit);
+
+      const result = await this.collection
+        .limit(limit)
+        .offset(offset)
+        .get();
+
+      // if (!result.exists) return { total: 0, limit, offset, data: [] };
+
+      const documents = result.docs.map(async doc => {
         return { id: doc.id, data: doc.data() };
       });
-      return documents;
+
+      const data = {
+        total: result.size,
+        limit,
+        offset,
+        data: await Promise.all(documents)
+      };
+
+      return data;
     } catch (error) {
       throw error;
     }
@@ -39,7 +62,7 @@ class Service {
   }
 
   async update(id, data, params) {
-    const document = this.database.doc(`${this.collection}/${id}`);
+    const document = this.collection.doc(id);
     try {
       await document.update({ ...data });
       return 'Success';
@@ -53,7 +76,7 @@ class Service {
   }
 
   async remove(id, params) {
-    const document = this.database.doc(`${this.collection}/${id}`);
+    const document = this.collection.doc(id);
     try {
       await document.delete();
       return 'Success';
