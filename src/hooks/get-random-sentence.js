@@ -7,10 +7,9 @@ module.exports = function(options = {}) {
     const { params, result } = context;
     const { query } = params;
 
-    if (query.hasOwnProperty('random') && result.length !== 0) {
-      delete query.random;
-      const rngNum = Math.floor(Math.random() * result.length);
-      context.result = result[rngNum];
+    if ('random' in query && result.total !== 0) {
+      const rngNum = Math.floor(Math.random() * result.total);
+      context.result = result.data[rngNum];
       return context;
     }
     return context;
