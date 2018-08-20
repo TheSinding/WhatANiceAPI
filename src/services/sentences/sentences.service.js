@@ -4,7 +4,6 @@ const hooks = require('./sentences.hooks');
 
 module.exports = function(app) {
   const paginate = app.get('paginate');
-
   const options = {
     paginate
   };
