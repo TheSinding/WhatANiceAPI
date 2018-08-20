@@ -2,6 +2,8 @@
 
 const getRandomSentence = require('../../hooks/get-random-sentence');
 
+const sentenceCounter = require('../../hooks/sentence-counter');
+
 module.exports = {
   before: {
     all: [],
@@ -17,10 +19,10 @@ module.exports = {
     all: [],
     find: [getRandomSentence()],
     get: [],
-    create: [],
+    create: [sentenceCounter()],
     update: [],
     patch: [],
-    remove: []
+    remove: [sentenceCounter()]
   },
 
   error: {
