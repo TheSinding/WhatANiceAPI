@@ -1,13 +1,15 @@
-
-
 const getRandomSentence = require('../../hooks/get-random-sentence');
 
 const sentenceCounter = require('../../hooks/sentence-counter');
 
+const addIdToCatalogue = require('../../hooks/add-id-to-catalogue');
+
+const sentencesViewedCounter = require('../../hooks/sentences-viewed-counter');
+
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [getRandomSentence()],
     get: [],
     create: [],
     update: [],
@@ -17,9 +19,9 @@ module.exports = {
 
   after: {
     all: [],
-    find: [getRandomSentence()],
-    get: [],
-    create: [sentenceCounter()],
+    find: [],
+    get: [sentencesViewedCounter()],
+    create: [sentenceCounter(), addIdToCatalogue()],
     update: [],
     patch: [],
     remove: [sentenceCounter()]

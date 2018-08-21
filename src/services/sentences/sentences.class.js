@@ -4,26 +4,31 @@ const errors = require('@feathersjs/errors');
 class Service {
   constructor(options) {
     this.options = options || {};
-    this.events = ['counterChanged'];
+    this.events = ['counterChanged', 'viewed'];
     this.collection = firestore.collection('sentences');
+  }
+
+  setup(app) {
+    this.publish('counterChanged', () => app.channel('everybody'));
+    this.publish('viewed', () => app.channel('everybody'));
   }
 
   async find(params) {
     try {
       const { query } = params;
-
-      let limit = 25;
+      const { paginate } = this.options;
       let offset = 0;
+      const queryLimit = query.limit !== undefined ? Number(query.limit) : null;
+      const limit = queryLimit === null ? paginate.default : queryLimit;
 
       if ('offset' in query) offset = Number(query.offset);
-      if ('limit' in query) limit = Number(query.limit);
+      if (limit > paginate.max)
+        throw new errors['400'](`Limit is too large, max is ${paginate.max}`);
 
       const result = await this.collection
         .limit(limit)
         .offset(offset)
         .get();
-
-      // if (!result.exists) return { total: 0, limit, offset, data: [] };
 
       const documents = result.docs.map(async doc => {
         return { id: doc.id, data: doc.data() };
@@ -45,7 +50,8 @@ class Service {
   async get(id, params) {
     try {
       const result = await this.collection.doc(id).get();
-      if (!result.exists) return { message: 'Resource not found' };
+      if (!result.exists)
+        throw new errors['404']('A sentence with that id is not found');
       return result.data();
     } catch (error) {
       throw error;
@@ -54,8 +60,8 @@ class Service {
 
   async create(data, params) {
     try {
-      await this.collection.add({ ...data });
-      return 'Success';
+      const result = await this.collection.add({ ...data });
+      return { id: result.id, ...data };
     } catch (error) {
       throw error;
     }
