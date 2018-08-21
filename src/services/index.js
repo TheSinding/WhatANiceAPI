@@ -3,6 +3,7 @@ const sentences = require('./sentences/sentences.service.js');
 const users = require('./users/users.service.js');
 const aggregations = require('./aggregations/aggregations.service.js');
 const counters = require('./counters/counters.service.js');
+const catalogue = require('./catalogue/catalogue.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function(app) {
   app.configure(analyze);
@@ -10,4 +11,5 @@ module.exports = function(app) {
   app.configure(users);
   app.configure(aggregations);
   app.configure(counters);
+  app.configure(catalogue);
 };
