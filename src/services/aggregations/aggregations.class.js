@@ -36,8 +36,8 @@ class Service {
   async create(data, params) {
     if (!('id' in data)) throw new errors.BadRequest('Id missing');
     try {
-      await this.collection.doc(data.id).set({ ...data.data });
-      return 'Success';
+      const doc = await this.collection.doc(data.id).set({ ...data.data });
+      return doc;
     } catch (error) {
       throw error;
     }
