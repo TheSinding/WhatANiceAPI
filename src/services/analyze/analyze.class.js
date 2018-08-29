@@ -16,23 +16,18 @@ class Service {
   }
 
   async create(data, params) {
-    if (!data.hasOwnProperty('metadata'))
-      throw new errors.BadRequest('Metadata is missing');
-    if (!data.hasOwnProperty('document'))
-      throw new errors.BadRequest('Document is missing');
+    const { document = {}, metadata = {} } = data;
 
-    const document = data.document;
+    if (!('content' in document))
+      throw new errors.BadRequest('Content in document is missing');
+    if (!('type' in document)) throw new errors.BadRequest('Type is missing');
 
-    if (!document.hasOwnProperty('content'))
-      throw new errors.BadRequest('Content is missing');
-    if (!document.hasOwnProperty('type'))
-      throw new errors.BadRequest('Type is missing');
     try {
       const documentResult = await this.client.analyzeSentiment({ document });
       const result = {
-        document: document,
+        document,
         result: documentResult[0],
-        metadata: data.metadata
+        metadata
       };
       return result;
     } catch (error) {
