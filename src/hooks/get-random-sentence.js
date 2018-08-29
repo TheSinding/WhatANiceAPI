@@ -1,33 +1,31 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
-const errors = require('@feathersjs/errors');
 // eslint-disable-next-line no-unused-vars
+const { ObjectID } = require('mongodb');
 module.exports = function(options = {}) {
   return async context => {
-    const { params, app, service } = context;
-    const { query } = params;
-    const catalogueService = app.service('catalogue');
+    const { params, service } = context;
+    const { query = {} } = params;
+    const { Model } = service;
+    const aggregationQuery = [{ $sample: { size: 1 } }];
 
     if (!('random' in query)) return context;
 
-    try {
-      const query = await catalogueService.find({
-        query: {
-          $select: ['sentencesIds']
-        }
+    if ('$not' in query) {
+      aggregationQuery.unshift({
+        $match: { _id: { $ne: ObjectID(query.$not) } }
       });
-      if (query.total === 0) {
-        throw new errors['500']('Sentences ID\'s is broken');
-      }
+    }
 
-      const { data } = query;
-      const sentencesCatalouge = data[0];
-      const { sentencesIds } = sentencesCatalouge;
+    try {
+      const documents = [];
+      const query = await Model.aggregate(aggregationQuery);
 
-      const rngNum = Math.floor(Math.random() * sentencesIds.length);
+      await query.forEach(doc => {
+        documents.push(doc);
+      });
 
-      const sentence = await service.get(sentencesIds[rngNum]);
-      context.result = sentence;
+      context.result = documents;
     } catch (error) {
       throw error;
     }
