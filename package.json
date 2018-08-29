@@ -42,6 +42,8 @@
     "compression": "^1.7.3",
     "cors": "^2.8.4",
     "feathers-nedb": "^3.1.0",
+    "firebase-admin": "^6.0.0",
+    "firebase-functions": "^2.0.5",
     "helmet": "^3.12.1",
     "nedb": "^1.8.0",
     "serve-favicon": "^2.5.0",
