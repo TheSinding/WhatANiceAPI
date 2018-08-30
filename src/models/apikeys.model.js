@@ -8,7 +8,7 @@ module.exports = function(app) {
   const apikeys = new Schema(
     {
       userId: { type: Schema.Types.ObjectId, required: true },
-      key: { type: String, required: true },
+      apikey: { type: String, required: true },
       scopes: [],
       valid: { type: Boolean, default: true }
     },
