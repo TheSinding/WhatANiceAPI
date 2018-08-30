@@ -1,22 +1,27 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
-
+const checkUserPermissions = require('../../hooks/check-user-permissions');
 const {
-  hashPassword, protect
+  hashPassword,
+  protect
 } = require('@feathersjs/authentication-local').hooks;
+
+const removePermissions = require('../../hooks/remove-permissions');
+
+const customGithubUser = require('../../hooks/custom-github-user');
 
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
-    get: [ authenticate('jwt') ],
-    create: [ hashPassword() ],
-    update: [ hashPassword(),  authenticate('jwt') ],
-    patch: [ hashPassword(),  authenticate('jwt') ],
-    remove: [ authenticate('jwt') ]
+    find: [authenticate('jwt'), checkUserPermissions()],
+    get: [authenticate('jwt'), checkUserPermissions()],
+    create: [hashPassword(), removePermissions(), customGithubUser()],
+    update: [hashPassword(), authenticate('jwt'), checkUserPermissions()],
+    patch: [hashPassword(), authenticate('jwt'), checkUserPermissions()],
+    remove: [authenticate('jwt')]
   },
 
   after: {
-    all: [ 
+    all: [
       // Make sure the password field is never sent to the client
       // Always must be the last hook
       protect('password')
