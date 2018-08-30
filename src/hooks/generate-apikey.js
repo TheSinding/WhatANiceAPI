@@ -9,7 +9,7 @@ module.exports = function(options = {}) {
     const { user } = params;
     const apikeyObject = {
       userId: user._id,
-      key: uuid.v4(),
+      apikey: uuid.v4(),
       scopes: config.defaultScopes
     };
 
