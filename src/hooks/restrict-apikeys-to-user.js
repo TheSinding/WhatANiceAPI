@@ -5,6 +5,9 @@ const { ObjectId } = require('mongoose').Types;
 module.exports = function(options = {}) {
   return async context => {
     const { params } = context;
+
+    if ('$skipUseridCheck' in params) return context;
+
     const query = {
       userId: params.user._id
     };
