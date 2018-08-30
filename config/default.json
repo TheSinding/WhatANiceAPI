@@ -1,5 +1,5 @@
 {
-  "host": "localhost",
+  "host": "ordinary-cat-99.localtunnel.me",
   "port": 3030,
   "public": "../public/",
   "paginate": {
@@ -7,20 +7,17 @@
     "max": 50
   },
   "authentication": {
-    "secret": "1a4983b712d97517b48a9d43cb8ca975b181d732235854646983bc875cc3cc3933c2c3b40e1a336e50e1fc450dab4bb3188a96a609c3ce079f0ca31eb5ca1f34d66151bbb760eedd8f45c6ddd247a898955c20ee963e221f5e50b6719b5ed44143d38a2b4092a3af8ee6d09e899ce671646d48d8d4f1b17ae4e999c32d385883486bfc731b8b2bc73a8ef1580f9627eada6fe8f985c60fe6134471254ea61202f50460984abb6d041215e376d94821cbc9ee2a556c16f645b9226dbf97e362c1447faa9b447e46de8893991d1557baa8a0cb336bf5e54ff1d1b0ae915df44fb705eafeaa631487461928e8dd5a00f172f5e13e160f035e97eb928252be62cb97",
-    "strategies": [
-      "jwt",
-      "local"
-    ],
+    "secret": "31eb3ff8a032932b6ec30dbba202389cffb8b257ed3237840615b9d70e8c48625bb1805fa283415d639166ad399084fbb612b836372860783e4cb516b723df74a6626f4ff988e9fb0c109e662bfe7e7098daabb5138767dc9784f25f094f87deb82d5582ed957c68633807ff51d4dc73cf466c18dad3cb5c79eb8e7d889cdd9c0dc773ae071da18e1159bbd0fe1bb349f3a20f146f250701a37e6fd958950ddfcea218e782a24ff5985159d2b8e4dc69a003fd6f459f8a87d68af4cc4c84edbe2ea60ab70628d02975ac0649739dd62152173ac956a04c1c9afb309ebf9541f0c363e90d9a93f734106e9d5ff14297edc6b00213c5c5252a3b55016aa9e24d2a",
+    "strategies": ["jwt", "local"],
     "path": "/authentication",
     "service": "users",
     "jwt": {
       "header": {
         "typ": "access"
       },
-      "audience": "https://yourdomain.com",
+      "audience": "https://whataniceapi.com",
       "subject": "anonymous",
-      "issuer": "feathers",
+      "issuer": "whataniceapi",
       "algorithm": "HS256",
       "expiresIn": "1d"
     },
@@ -28,7 +25,44 @@
       "entity": "user",
       "usernameField": "email",
       "passwordField": "password"
+    },
+    "github": {
+      "clientID": "0a9a1a7a6d59b0ef4225",
+      "clientSecret": "f96142571e461904b15f6341d9c28b028f95af50",
+      "successRedirect": "/",
+      "callbackURL": "https://ordinary-cat-99.localtunnel.me/auth/github/callback",
+      "scope": ["user:email"]
+    },
+    "cookie": {
+      "enabled": true,
+      "name": "wana-jwt",
+      "httpOnly": false,
+      "secure": false
     }
   },
-  "nedb": "../data"
+  "protectedRoutes": {
+    "users": {
+      "get": ["SUPERADMIN"],
+      "find": ["SUPERADMIN"],
+      "update": ["SUPERADMIN"],
+      "patch": ["SUPERADMIN"],
+      "remove": ["SUPERADMIN"]
+    }
+  },
+  "apikeys": {
+    "defaultScopes": [
+      {
+        "sentences": ["get", "find", "create"]
+      },
+      {
+        "aggregations": ["get"]
+      }
+    ]
+  },
+  "mongodb": {
+    "url": "mongodb://localhost:27017/wana",
+    "options": {
+      "useNewUrlParser": true
+    }
+  }
 }

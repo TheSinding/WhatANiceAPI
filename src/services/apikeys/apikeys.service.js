@@ -1,7 +1,7 @@
-// Initializes the `aggregations` service on path `/aggregations`
+// Initializes the `apikeys` service on path `/apikeys`
 const createService = require('feathers-mongoose');
-const createModel = require('../../models/aggregations.model');
-const hooks = require('./aggregations.hooks');
+const createModel = require('../../models/apikeys.model');
+const hooks = require('./apikeys.hooks');
 
 module.exports = function (app) {
   const Model = createModel(app);
@@ -13,10 +13,10 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/aggregations', createService(options));
+  app.use('/apikeys', createService(options));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('aggregations');
+  const service = app.service('apikeys');
 
   service.hooks(hooks);
 };

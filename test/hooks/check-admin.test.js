@@ -1,8 +1,8 @@
 const assert = require('assert');
 const feathers = require('@feathersjs/feathers');
-const addIdToCatalogue = require('../../src/hooks/add-id-to-catalogue');
+const checkAdmin = require('../../src/hooks/check-admin');
 
-describe('\'addIDToCatalogue\' hook', () => {
+describe('\'checkAdmin\' hook', () => {
   let app;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('\'addIDToCatalogue\' hook', () => {
     });
 
     app.service('dummy').hooks({
-      after: addIdToCatalogue()
+      
     });
   });
 

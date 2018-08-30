@@ -1,14 +1,12 @@
-const getRandomSentence = require('../../hooks/get-random-sentence');
-
-const sentenceCounter = require('../../hooks/sentence-counter');
-
-const addIdToCatalogue = require('../../hooks/add-id-to-catalogue');
-
 const sentencesViewedCounter = require('../../hooks/sentences-viewed-counter');
+const getRandomSentence = require('../../hooks/get-random-sentence');
+const sentenceCounter = require('../../hooks/sentence-counter');
+const checkApikeyScope = require('../../hooks/check-apikey-scope');
+const findApikey = require('../../hooks/find-apikey');
 
 module.exports = {
   before: {
-    all: [],
+    all: [findApikey(), checkApikeyScope()],
     find: [getRandomSentence()],
     get: [],
     create: [],
@@ -21,7 +19,7 @@ module.exports = {
     all: [],
     find: [],
     get: [sentencesViewedCounter()],
-    create: [sentenceCounter(), addIdToCatalogue()],
+    create: [sentenceCounter()],
     update: [],
     patch: [],
     remove: [sentenceCounter()]
