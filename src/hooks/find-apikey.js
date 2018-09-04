@@ -18,11 +18,11 @@ module.exports = function(options = {}) {
         $skipUseridCheck: true
       });
 
-      if (result.total === 0) throw new errors['404']('API not found');
+      if (result.total === 0) throw new errors['404']('API key not found');
 
       const apikey = result.data[0];
 
-      if (!apikey.valid) throw new errors['403']('API not valid');
+      if (!apikey.valid) throw new errors['403']('API key not valid');
 
       if (apikey.scopes[0] === 'SUPERADMIN') params.$superadmin = true;
 
