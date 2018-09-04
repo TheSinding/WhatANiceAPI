@@ -12,7 +12,8 @@ module.exports = function(app) {
       sentiment: {
         magnitude: { type: Number, required: true },
         score: { type: Number, required: true }
-      }
+      },
+      language: { type: String, required: true }
     },
     {
       timestamps: true

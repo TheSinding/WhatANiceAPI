@@ -4,12 +4,14 @@ const sentenceCounter = require('../../hooks/sentence-counter');
 const checkApikeyScope = require('../../hooks/check-apikey-scope');
 const findApikey = require('../../hooks/find-apikey');
 
+const analyzeSentence = require('../../hooks/analyze-sentence');
+
 module.exports = {
   before: {
     all: [findApikey(), checkApikeyScope()],
     find: [getRandomSentence()],
     get: [],
-    create: [],
+    create: [analyzeSentence()],
     update: [],
     patch: [],
     remove: []

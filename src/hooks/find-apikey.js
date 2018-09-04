@@ -4,15 +4,17 @@ const errors = require('@feathersjs/errors');
 // eslint-disable-next-line no-unused-vars
 module.exports = function(options = {}) {
   return async context => {
-    const { params, app } = context;
+    const { params, app, data = {} } = context;
     const { query } = params;
     const apiService = app.service('apikeys');
-    if (!('apikey' in query))
+    if (!('apikey' in query) && !('apikey' in data))
       throw new errors.NotAuthenticated('No Apikey supplied');
 
     try {
+      const suppliedApikey = query.apikey || data.apikey;
+
       const result = await apiService.find({
-        query: { apikey: query.apikey },
+        query: { apikey: suppliedApikey },
         $skipUseridCheck: true
       });
 

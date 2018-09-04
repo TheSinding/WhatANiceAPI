@@ -12,7 +12,7 @@ module.exports = function(options = {}) {
     const { scopes } = apikey;
     for (const scope of scopes) {
       if (path in scope) {
-        if (!(method in scope[path])) {
+        if (!scope[path].includes(method)) {
           throw new errors.MethodNotAllowed(
             `API does not have the required permission the method: '${method}' on scope '${path}'`
           );
