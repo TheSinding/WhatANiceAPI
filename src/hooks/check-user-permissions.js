@@ -5,11 +5,15 @@
 const errors = require('@feathersjs/errors');
 module.exports = function(options = {}) {
   return async context => {
-    const { params, path, method, app } = context;
+    const { params, path, method, app, id } = context;
     const protectedRoutes = app.get('protectedRoutes');
     // If other serives uses the users method eg, authentication, params.user will be null
     const { user = null } = params;
+
     if (user === null) return context;
+
+    // If a user is getting it's own user
+    if (user._id.equals(id)) return context;
 
     const { permissions } = user;
 
