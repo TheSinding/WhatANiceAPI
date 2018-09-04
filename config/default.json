@@ -62,6 +62,7 @@
   "sentencesConfig": {
     "sentimentThreshold": 0.7
   },
+  "ranks": { "default": "USER", "types": ["SUPERADMIN", "ADMIN", "USER"] },
   "mongodb": {
     "url": "mongodb://localhost:27017/wana",
     "options": {
