@@ -1,5 +1,11 @@
 const path = require('path');
 const favicon = require('serve-favicon');
+const {
+  version,
+  productName,
+  author,
+  description
+} = require('../package.json');
 const compress = require('compression');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -33,7 +39,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
-app.use('/', express.static(app.get('public')));
+app.use('/', (req, res) => {
+  res.send({
+    status: 200,
+    publicRoutes: ['/sentences'],
+    version,
+    productName,
+    author,
+    description
+  });
+});
 
 // Set up Plugins and providers
 app.configure(express.rest());
