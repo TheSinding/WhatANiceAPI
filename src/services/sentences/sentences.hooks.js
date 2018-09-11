@@ -1,20 +1,20 @@
 const sentencesViewedCounter = require('../../hooks/sentences-viewed-counter');
 const getRandomSentence = require('../../hooks/get-random-sentence');
 const sentenceCounter = require('../../hooks/sentence-counter');
-const checkApikeyScope = require('../../hooks/check-apikey-scope');
-const findApikey = require('../../hooks/find-apikey');
+
+const { authenticate } = require('@feathersjs/authentication').hooks;
 
 const analyzeSentence = require('../../hooks/analyze-sentence');
 
 module.exports = {
   before: {
-    all: [findApikey(), checkApikeyScope()],
+    all: [],
     find: [getRandomSentence()],
     get: [],
     create: [analyzeSentence()],
-    update: [],
-    patch: [],
-    remove: []
+    update: [authenticate('jwt')],
+    patch: [authenticate('jwt')],
+    remove: [authenticate('jwt')]
   },
 
   after: {

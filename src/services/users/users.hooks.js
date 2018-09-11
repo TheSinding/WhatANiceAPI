@@ -9,6 +9,8 @@ const removePermissions = require('../../hooks/remove-permissions');
 
 const customGithubUser = require('../../hooks/custom-github-user');
 
+const createKeyAtNewUser = require('../../hooks/create-key-at-new-user');
+
 module.exports = {
   before: {
     all: [],
@@ -28,7 +30,7 @@ module.exports = {
     ],
     find: [],
     get: [],
-    create: [],
+    create: [createKeyAtNewUser()],
     update: [],
     patch: [],
     remove: []

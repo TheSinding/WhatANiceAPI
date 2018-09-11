@@ -6,12 +6,14 @@ const restrictApikeysToUser = require('../../hooks/restrict-apikeys-to-user');
 
 const overrideId = require('../../hooks/override-id');
 
+const deleteOldKey = require('../../hooks/delete-old-key');
+
 module.exports = {
   before: {
     all: [authenticate('jwt')],
     find: [restrictApikeysToUser()],
     get: [overrideId()],
-    create: [generateApikey()],
+    create: [generateApikey(), deleteOldKey()],
     update: [],
     patch: [],
     remove: []

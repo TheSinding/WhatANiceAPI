@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 module.exports = function(app) {
+  const options = app.get('mongodb');
   mongoose
     .connect(
-      app.get('mongodb').url,
+      options.url,
       { useNewUrlParser: true }
     )
     .catch(error => {
