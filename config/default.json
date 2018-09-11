@@ -30,7 +30,6 @@
       "clientID": "0a9a1a7a6d59b0ef4225",
       "clientSecret": "f96142571e461904b15f6341d9c28b028f95af50",
       "successRedirect": "/",
-      "callbackURL": "https://653d7bcb.ngrok.io/auth/github/callback",
       "scope": ["user:email"]
     },
     "cookie": {
