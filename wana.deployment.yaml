@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wana-api-deployment
+  labels:
+    app: wana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wana
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wana
+    spec:
+      containers:
+        - name: wanaserver
+          image: eu.gcr.io/tea-project-211819/simonsinding/wana
+          ports:
+            - containerPort: 3030
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wana-service
+spec:
+  type: NodePort
+  selector:
+    app: wana
+  ports:
+    - name: wana-http
+      protocol: TCP
+      port: 80
+      targetPort: 3030
