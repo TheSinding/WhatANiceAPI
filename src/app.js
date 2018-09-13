@@ -39,16 +39,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
-app.use('/', (req, res) => {
-  res.send({
-    status: 200,
-    publicRoutes: ['/sentences'],
-    version,
-    productName,
-    author,
-    description
-  });
-});
+// app.use('/', (req, res) => {
+//   res.send({
+//     status: 200,
+//     publicRoutes: ['/sentences'],
+//     version,
+//     productName,
+//     author,
+//     description
+//   });
+// });
 
 // Set up Plugins and providers
 app.configure(express.rest());

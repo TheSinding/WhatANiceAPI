@@ -4,12 +4,11 @@
 const { ObjectID } = require('mongodb');
 module.exports = function(options = {}) {
   return async context => {
-    const { params, service } = context;
+    const { params, service, id } = context;
     const { query = {} } = params;
     const { Model } = service;
     const aggregationQuery = [{ $sample: { size: 1 } }];
-
-    if (!('random' in query)) return context;
+    if (id !== 'random') return context;
 
     if ('$not' in query) {
       aggregationQuery.unshift({

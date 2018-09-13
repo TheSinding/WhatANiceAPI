@@ -10,7 +10,7 @@ module.exports = {
   before: {
     all: [],
     find: [getRandomSentence()],
-    get: [],
+    get: [getRandomSentence()],
     create: [analyzeSentence()],
     update: [authenticate('jwt')],
     patch: [authenticate('jwt')],
