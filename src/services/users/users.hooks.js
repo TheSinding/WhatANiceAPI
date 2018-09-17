@@ -1,5 +1,4 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
-const checkUserPermissions = require('../../hooks/check-user-permissions');
 const {
   hashPassword,
   protect
@@ -7,18 +6,14 @@ const {
 
 const removePermissions = require('../../hooks/remove-permissions');
 
-const customGithubUser = require('../../hooks/custom-github-user');
-
-const createKeyAtNewUser = require('../../hooks/create-key-at-new-user');
-
 module.exports = {
   before: {
     all: [],
-    find: [authenticate('jwt'), checkUserPermissions()],
-    get: [authenticate('jwt'), checkUserPermissions()],
-    create: [hashPassword(), removePermissions(), customGithubUser()],
-    update: [hashPassword(), authenticate('jwt'), checkUserPermissions()],
-    patch: [hashPassword(), authenticate('jwt'), checkUserPermissions()],
+    find: [authenticate('jwt')],
+    get: [authenticate('jwt')],
+    create: [hashPassword(), removePermissions()],
+    update: [hashPassword(), authenticate('jwt')],
+    patch: [hashPassword(), authenticate('jwt')],
     remove: [authenticate('jwt')]
   },
 
@@ -30,7 +25,7 @@ module.exports = {
     ],
     find: [],
     get: [],
-    create: [createKeyAtNewUser()],
+    create: [],
     update: [],
     patch: [],
     remove: []

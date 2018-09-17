@@ -1,6 +1,6 @@
 const sentencesViewedCounter = require('../../hooks/sentences-viewed-counter');
-const getRandomSentence = require('../../hooks/get-random-sentence');
 const sentenceCounter = require('../../hooks/sentence-counter');
+const getRandomSentence = require('../../hooks/get-random-sentence');
 
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
