@@ -58,6 +58,10 @@
       }
     ]
   },
+  "moment": {
+    "format": "DDMMYYYY"
+  },
+  "metrics": ["used", "daily", { "_id": "history", "days": [] }],
   "sentencesConfig": {
     "sentimentThreshold": 0.7
   },
