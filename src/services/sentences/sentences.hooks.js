@@ -6,11 +6,15 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 
 const analyzeSentence = require('../../hooks/analyze-sentence');
 
+const dailyCounter = require('../../hooks/daily-counter');
+
+const getSentencesCount = require('../../hooks/get-sentences-count');
+
 module.exports = {
   before: {
     all: [],
     find: [getRandomSentence()],
-    get: [getRandomSentence()],
+    get: [getRandomSentence(), getSentencesCount()],
     create: [analyzeSentence()],
     update: [authenticate('jwt')],
     patch: [authenticate('jwt')],
@@ -19,14 +23,13 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
-    get: [sentencesViewedCounter()],
+    find: [sentencesViewedCounter(), dailyCounter()],
+    get: [sentencesViewedCounter(), dailyCounter()],
     create: [sentenceCounter()],
     update: [],
     patch: [],
     remove: [sentenceCounter()]
   },
-
   error: {
     all: [],
     find: [],
