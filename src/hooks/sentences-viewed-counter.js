@@ -4,28 +4,17 @@
 const moment = require('moment');
 module.exports = function(options = {}) {
   return async context => {
-    const { app } = context;
-    const aggregationService = app.service('aggregations');
-    const today = moment()
-      .startOf('day')
-      .format();
+    const { app, service, result } = context;
+
+    if (result.limit === 0) return context;
+
+    const metrics = app.service('metrics');
     try {
-      const sentenceAggregation = await aggregationService.find({
-        query: { type: 'sentences' }
-      });
-      if (sentenceAggregation.total <= 0) return context;
-
-      const data = sentenceAggregation.data[0];
-      let currentCount = data.used === undefined ? 1 : data.used + 1;
-      // const dayCount = data.daysCount.filter(day => {
-      //   return day.date === 'a';
-      // });
-
-      // console.log(dayCount);
-
-      await aggregationService.patch(data._id, {
-        used: currentCount
-      });
+      const usedMetric = await metrics.get('used');
+      let { count } = usedMetric;
+      count++;
+      await metrics.patch('used', { count });
+      service.emit('used', count);
     } catch (error) {
       throw error;
     }
