@@ -1,8 +1,8 @@
 # WhatANiceAPI
 
-[whataniceapi.com](https://whataniceapi.com)
+## [WhatANiceApi.com](https://whataniceapi.com)
 
-Put some love in your app!
+### Put some love in your app!
 
 What a nice API, is a free, very simple REST API, which spread love.
 Use it to greet your customers, make a cute website saying nice things, have it greet you, every time you open a new bash terminal. 
