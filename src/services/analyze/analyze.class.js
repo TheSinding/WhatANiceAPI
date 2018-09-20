@@ -8,15 +8,17 @@ class Service {
   }
 
   async find(params) {
-    throw new errors.NotFound();
+    throw new errors.NotImplemented();
   }
 
   async get(id, params) {
-    throw new errors.NotFound();
+    throw new errors.NotImplemented();
   }
-
-  async create(data, params) {
-    const { document = {}, metadata = {} } = data;
+  async create(id, params) {
+    throw new errors.NotImplemented();
+  }
+  async analyze(data) {
+    const { document = {} } = data;
 
     if (!('content' in document))
       throw new errors.BadRequest('Content in document is missing');
@@ -26,8 +28,7 @@ class Service {
       const documentResult = await this.client.analyzeSentiment({ document });
       const result = {
         document,
-        result: documentResult[0],
-        metadata
+        result: documentResult[0]
       };
       return result;
     } catch (error) {
@@ -36,15 +37,15 @@ class Service {
   }
 
   async update(id, data, params) {
-    return data;
+    throw new errors.NotImplemented();
   }
 
   async patch(id, data, params) {
-    return data;
+    throw new errors.NotImplemented();
   }
 
   async remove(id, params) {
-    return { id };
+    throw new errors.NotImplemented();
   }
 }
 

@@ -4,7 +4,7 @@ const local = require('@feathersjs/authentication-local');
 const oauth2 = require('@feathersjs/authentication-oauth2');
 const GithubStrategy = require('passport-github');
 
-module.exports = function (app) {
+module.exports = function(app) {
   const config = app.get('authentication');
 
   // Set up authentication with the secret
@@ -12,21 +12,33 @@ module.exports = function (app) {
   app.configure(jwt());
   app.configure(local());
 
-  app.configure(oauth2(Object.assign({
-    name: 'github',
-    Strategy: GithubStrategy
-  }, config.github)));
+  app.configure(
+    oauth2(
+      Object.assign(
+        {
+          name: 'github',
+          Strategy: GithubStrategy
+        },
+        config.github
+      )
+    )
+  );
 
   // The `authentication` service is used to create a JWT.
   // The before `create` hook registers strategies that can be used
   // to create a new valid JWT (e.g. local or oauth2)
   app.service('authentication').hooks({
     before: {
+      create: [authentication.hooks.authenticate(config.strategies)],
+      remove: [authentication.hooks.authenticate('jwt')]
+    },
+    after: {
       create: [
-        authentication.hooks.authenticate(config.strategies)
-      ],
-      remove: [
-        authentication.hooks.authenticate('jwt')
+        async context => {
+          const { params } = context;
+          const { user } = params;
+          if (!user.verified) throw new Error('User not verified');
+        }
       ]
     }
   });

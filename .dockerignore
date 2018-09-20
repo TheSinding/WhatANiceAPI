@@ -3,8 +3,13 @@ npm-debug.log
 Dockerfile*
 docker-compose*
 .dockerignore
-.git
 .gitignore
 README.md
 LICENSE
 .vscode
+public/**
+build.sh
+wana.*
+fallback.*
+test
+build.sh

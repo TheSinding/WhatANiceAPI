@@ -5,6 +5,7 @@
 module.exports = function(app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
+  const ranks = app.get('ranks');
   const users = new Schema(
     {
       email: { type: String, required: true, unique: true },
@@ -12,6 +13,11 @@ module.exports = function(app) {
       photos: [],
       providerMetadata: Map,
       permissions: { type: [String], defualt: ['USER'] },
+      rank: {
+        type: String,
+        default: ranks.default,
+        enum: ranks.types
+      },
       githubId: String,
       verified: { type: Boolean, default: false }
     },

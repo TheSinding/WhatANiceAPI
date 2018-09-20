@@ -1,7 +1,3 @@
-
-
-const createSentence = require('../../hooks/create-sentence');
-
 module.exports = {
   before: {
     all: [],
@@ -17,7 +13,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [createSentence()],
+    create: [],
     update: [],
     patch: [],
     remove: []

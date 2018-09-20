@@ -23,6 +23,16 @@
     lodash "^4.17.5"
     passport-local "^1.0.0"
 
+"@feathersjs/authentication-oauth2@^1.2.0":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@feathersjs/authentication-oauth2/-/authentication-oauth2-1.2.2.tgz#cf216b0b047311f6f97dabb96c0f093c46c8ad17"
+  dependencies:
+    "@feathersjs/commons" "^3.0.0"
+    "@feathersjs/errors" "^3.3.2"
+    "@feathersjs/express" "^1.2.5"
+    debug "^3.1.0"
+    lodash.merge "^4.6.1"
+
 "@feathersjs/authentication@^2.1.7":
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/@feathersjs/authentication/-/authentication-2.1.7.tgz#5ba6013640a30756438166c29548215b408a895b"
@@ -49,6 +59,10 @@
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/@feathersjs/commons/-/commons-1.4.3.tgz#7ae31a13732caeb8a90a65ebbc7a22f431de397a"
 
+"@feathersjs/commons@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@feathersjs/commons/-/commons-3.0.0.tgz#d3ddfdc28e5239fe8247daf178bb89245b29281d"
+
 "@feathersjs/configuration@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@feathersjs/configuration/-/configuration-1.0.2.tgz#18da733e908fc39726233dbae867c6b0eb3920cd"
@@ -62,12 +76,28 @@
   dependencies:
     debug "^3.1.0"
 
+"@feathersjs/errors@^3.3.2":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@feathersjs/errors/-/errors-3.3.2.tgz#8e07a5eeeedd36f68baad002c7d96fa0df4cc32b"
+  dependencies:
+    debug "^3.1.0"
+
 "@feathersjs/express@^1.2.3":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@feathersjs/express/-/express-1.2.3.tgz#a43aa5cae8337ca2ece91c3b0e4c6c0e81c08911"
   dependencies:
     "@feathersjs/commons" "^1.4.0"
     "@feathersjs/errors" "^3.0.0"
+    debug "^3.1.0"
+    express "^4.16.2"
+    uberproto "^2.0.0"
+
+"@feathersjs/express@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@feathersjs/express/-/express-1.2.5.tgz#778ddcedb6cf393dafde4725ac144faaada0ed5f"
+  dependencies:
+    "@feathersjs/commons" "^3.0.0"
+    "@feathersjs/errors" "^3.3.2"
     debug "^3.1.0"
     express "^4.16.2"
     uberproto "^2.0.0"
@@ -2103,7 +2133,7 @@ lodash.isstring@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
 
-lodash.merge@^4.6.0:
+lodash.merge@^4.6.0, lodash.merge@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
 
@@ -2274,6 +2304,10 @@ mocha@^5.2.0:
     mkdirp "0.5.1"
     supports-color "5.4.0"
 
+moment@^2.22.2:
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
+
 mongodb-core@3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-3.1.3.tgz#b036bce5290b383fe507238965bef748dd8adb75"
@@ -2437,6 +2471,10 @@ oauth-sign@~0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
+oauth@0.9.x:
+  version "0.9.15"
+  resolved "https://registry.yarnpkg.com/oauth/-/oauth-0.9.15.tgz#bd1fefaf686c96b75475aed5196412ff60cfb9c1"
+
 object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -2551,6 +2589,12 @@ pascalcase@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
 
+passport-github@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/passport-github/-/passport-github-1.1.0.tgz#8ce1e3fcd61ad7578eb1df595839e4aea12355d4"
+  dependencies:
+    passport-oauth2 "1.x.x"
+
 passport-jwt@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/passport-jwt/-/passport-jwt-4.0.0.tgz#7f0be7ba942e28b9f5d22c2ebbb8ce96ef7cf065"
@@ -2563,6 +2607,15 @@ passport-local@^1.0.0:
   resolved "https://registry.yarnpkg.com/passport-local/-/passport-local-1.0.0.tgz#1fe63268c92e75606626437e3b906662c15ba6ee"
   dependencies:
     passport-strategy "1.x.x"
+
+passport-oauth2@1.x.x:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/passport-oauth2/-/passport-oauth2-1.4.0.tgz#f62f81583cbe12609be7ce6f160b9395a27b86ad"
+  dependencies:
+    oauth "0.9.x"
+    passport-strategy "1.x.x"
+    uid2 "0.0.x"
+    utils-merge "1.x.x"
 
 passport-strategy@1.x.x, passport-strategy@^1.0.0:
   version "1.0.0"
@@ -3440,6 +3493,10 @@ uberproto@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/uberproto/-/uberproto-2.0.4.tgz#f215bcc227c1b8fd8fccd8d701b9c96dd71ff85d"
 
+uid2@0.0.x:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/uid2/-/uid2-0.0.3.tgz#483126e11774df2f71b8b639dcd799c376162b82"
+
 ultron@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
@@ -3494,7 +3551,7 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
-utils-merge@1.0.1:
+utils-merge@1.0.1, utils-merge@1.x.x:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 

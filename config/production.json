@@ -1,4 +1,10 @@
 {
-  "host": "api.whataniceapi.com",
-  "port": "PORT"
+  "host": "whataniceapi.com",
+  "port": "3030",
+  "mongodb": {
+    "url": "mongodb://mongodb.default.svc.cluster.local:27017/wana",
+    "options": {
+      "useNewUrlParser": true
+    }
+  }
 }

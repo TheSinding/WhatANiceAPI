@@ -1,8 +1,8 @@
 const assert = require('assert');
 const feathers = require('@feathersjs/feathers');
-const checkAdmin = require('../../src/hooks/check-admin');
+const dailyCounter = require('../../src/hooks/daily-counter');
 
-describe('\'checkAdmin\' hook', () => {
+describe('\'dailyCounter\' hook', () => {
   let app;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('\'checkAdmin\' hook', () => {
     });
 
     app.service('dummy').hooks({
-      
+      after: dailyCounter()
     });
   });
 

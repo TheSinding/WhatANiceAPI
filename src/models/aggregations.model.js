@@ -9,7 +9,7 @@ module.exports = function(app) {
     {
       type: { type: String, required: true },
       last5: Map,
-      count: Number
+      used: Number
     },
     {
       timestamps: true

@@ -1,8 +1,8 @@
 const assert = require('assert');
 const feathers = require('@feathersjs/feathers');
-const customGithubUser = require('../../src/hooks/custom-github-user');
+const getSentencesCount = require('../../src/hooks/get-sentences-count');
 
-describe('\'customGithubUser\' hook', () => {
+describe('\'getSentencesCount\' hook', () => {
   let app;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('\'customGithubUser\' hook', () => {
     });
 
     app.service('dummy').hooks({
-      before: customGithubUser()
+      before: getSentencesCount()
     });
   });
 

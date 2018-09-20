@@ -2,7 +2,7 @@
   "name": "wana",
   "productName": "What A Nice API",
   "description": "A very nice api, saying sweet stuff to you..",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://whataniceapi.com",
   "main": "src",
   "keywords": [
@@ -21,6 +21,11 @@
   "engines": {
     "node": "^10.0.0",
     "npm": ">= 3.0.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public/*"
+    ]
   },
   "scripts": {
     "test": "npm run eslint && npm run mocha",
@@ -45,6 +50,7 @@
     "feathers-mongodb": "^3.3.0",
     "feathers-mongoose": "^6.1.4",
     "helmet": "^3.12.1",
+    "moment": "^2.22.2",
     "mongodb": "^3.1.4",
     "mongoose": "^5.2.10",
     "passport-github": "^1.1.0",

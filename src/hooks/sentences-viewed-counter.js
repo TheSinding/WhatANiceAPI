@@ -1,28 +1,23 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
-const errors = require('@feathersjs/errors');
 // eslint-disable-next-line no-unused-vars
+const moment = require('moment');
 module.exports = function(options = {}) {
   return async context => {
-    // const { service, app } = context;
-    // const aggregationService = app.service('aggregations');
-    // const VIEWED = 'viewed';
+    const { app, service, result } = context;
 
-    // try {
-    //   const sentenceAggregation = await aggregationService.get(VIEWED);
-    //   if (!sentenceAggregation.exists) throw new errors['500']();
+    if (result.limit === 0) return context;
 
-    //   const currentCount = sentenceAggregation.data.count + 1;
-
-    //   await aggregationService.patch(VIEWED, { count: currentCount });
-
-    //   service.emit('viewed', {
-    //     type: 'viewed',
-    //     data: { currentCount }
-    //   });
-    // } catch (error) {
-    //   throw error;
-    // }
+    const metrics = app.service('metrics');
+    try {
+      const usedMetric = await metrics.get('used');
+      let { count } = usedMetric;
+      count++;
+      await metrics.patch('used', { count });
+      service.emit('used', count);
+    } catch (error) {
+      throw error;
+    }
     return context;
   };
 };

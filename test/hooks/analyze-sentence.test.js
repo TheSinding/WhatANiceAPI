@@ -1,8 +1,8 @@
 const assert = require('assert');
 const feathers = require('@feathersjs/feathers');
-const overrideId = require('../../src/hooks/override-id');
+const analyzeSentence = require('../../src/hooks/analyze-sentence');
 
-describe('\'overrideId\' hook', () => {
+describe('\'analyzeSentence\' hook', () => {
   let app;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('\'overrideId\' hook', () => {
     });
 
     app.service('dummy').hooks({
-      before: overrideId()
+      before: analyzeSentence()
     });
   });
 
