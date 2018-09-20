@@ -1,6 +1,6 @@
 # WhatANiceAPI
 
-## [WhatANiceApi.com](https://whataniceapi.com)
+## [API homepage](https://whataniceapi.com)
 
 ### Put some love in your app!
 
