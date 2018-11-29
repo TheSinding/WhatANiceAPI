@@ -2,7 +2,7 @@
   "host": "whataniceapi.com",
   "port": "3030",
   "mongodb": {
-    "url": "mongodb://mongodb.default.svc.cluster.local:27017/wana",
+    "url": "mongodb://USER:PASS@ds237610.mlab.com:37610/wana",
     "options": {
       "useNewUrlParser": true
     }

@@ -3,9 +3,12 @@ const MongoClient = require('mongodb').MongoClient;
 
 module.exports = function(app) {
   const config = app.get('mongodb');
+  const user = process.env.MONGO_USER;
+  const password = process.env.MONGO_PASSWORD;
   const dbName = url.parse(config.url).path.substring(1);
+  const _url = config.url.replace('USER', user).replace('PASS', password);
   const promise = MongoClient.connect(
-    config.url,
+    _url,
     config.options
   )
     .then(client => {
