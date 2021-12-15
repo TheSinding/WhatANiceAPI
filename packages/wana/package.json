@@ -1,0 +1,31 @@
+{
+  "name": "whataniceapi",
+  "version": "1.0.0",
+  "description": "A nice api !",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "nice",
+    "funny"
+  ],
+  "author": "simon@sinding.dev",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16.11.13",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.23.1",
+    "ajv": "^8.8.2",
+    "ajv-formats": "^2.1.1",
+    "fastify": "^3.25.0",
+    "fastify-mongodb": "^4.1.1",
+    "fastify-plugin": "^3.0.0"
+  }
+}
