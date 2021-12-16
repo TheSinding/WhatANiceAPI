@@ -1,16 +1,24 @@
-import { FastifyRequest } from "fastify";
-import { Collection, Document } from "mongodb";
-import { ajv } from "../utils/schemaValidator";
-import { SenteceBody, SentenceBodySchema } from "./types";
+import { FastifyInstance, FastifyRequest } from 'fastify';
+import { COLLECTION_NAME } from '.';
+import { SenteceBody, Sentence } from './types';
 
 type PostRequest = FastifyRequest<{ Body: SenteceBody }>;
 
-export const createHandler =
-  (collection: Collection<Document>) => async (request: PostRequest) => {
+export async function createHandler(
+    this: FastifyInstance,
+    request: PostRequest
+) {
+    const collection = this.mongo.db!.collection(COLLECTION_NAME);
     const { body } = request;
 
-    if (!ajv.validate(SentenceBodySchema, body)) throw new Error("Wrong data");
-    const { insertedId } = await collection.insertOne(body);
+    const sentence: Omit<Sentence, '_id'> = {
+        created_at: Date.now(),
+        tags: [],
+        ...body,
+        approved: false,
+    };
+
+    const { insertedId } = await collection.insertOne(sentence);
 
     return await collection.findOne({ _id: insertedId });
-  };
+}

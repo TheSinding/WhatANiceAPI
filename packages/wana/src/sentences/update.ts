@@ -1,21 +1,21 @@
-import { FastifyRequest } from "fastify";
-import { Collection, Document, ObjectId } from "mongodb";
-import { ajv } from "../utils/schemaValidator";
-import { SenteceBody, Sentence, SentenceBodySchema } from "./types";
+import { FastifyInstance, FastifyRequest } from 'fastify';
+import { ObjectId } from 'mongodb';
+import { COLLECTION_NAME } from '.';
+import { Sentence, SentenceUpdateBody } from './types';
 
 type PutRequest = FastifyRequest<{
-  Body: SenteceBody;
-  Params: Pick<Sentence, "id">;
+    Body: Partial<SentenceUpdateBody>;
+    Params: Pick<Sentence, '_id'>;
 }>;
 
-export const updateHandler =
-  (collection: Collection<Document>) => async (request: PutRequest) => {
-    const { body } = request;
-
-    if (!ajv.validate(SentenceBodySchema, body)) throw new Error("Wrong data");
+export async function updateHandler(
+    this: FastifyInstance,
+    request: PutRequest
+) {
+    const collection = this.mongo.db!.collection(COLLECTION_NAME);
     await collection.updateOne(
-      { _id: new ObjectId(request.params.id) },
-      { $set: request.body }
+        { _id: new ObjectId(request.params._id) },
+        { $set: { ...request.body, updated_at: Date.now() } }
     );
-    return await collection.findOne({ _id: new ObjectId(request.params.id) });
-  };
+    return await collection.findOne({ _id: new ObjectId(request.params._id) });
+}
