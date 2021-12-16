@@ -3,7 +3,8 @@ import { MetaSchema } from '../common/MetaSchema';
 
 export const SentenceSchema = Type.Object(
     {
-        id: Type.String({
+        _id: Type.String({
+            $id: 'wana:sentences:sentence_id',
             description: 'The ID of the sentence',
             examples: ['a09duf09a'],
         }),
@@ -15,18 +16,23 @@ export const SentenceSchema = Type.Object(
             description: 'Array of tags, describing the sentence',
             examples: ['love', 'nice', 'business', 'greeting'],
         }),
-        createdAt: Type.Integer({
+        created_at: Type.Integer({
             description: 'The timestamp of creation',
         }),
-        updatedAt: Type.Optional(
+        updated_at: Type.Optional(
             Type.Integer({
                 description: 'The timestamp of an update',
             })
         ),
+        approved: Type.Boolean({
+            description: 'Whether or not the sentences has been moderated',
+            default: false,
+        }),
     },
     {
         additionalProperties: false,
         description: 'Sentence defintion schema',
+        $id: 'wana:sentences',
     }
 );
 
@@ -36,11 +42,17 @@ export const SentenceBodySchema = Type.Object(
         tags: Type.Optional(SentenceSchema.properties.tags),
     },
     {
-        $id: 'wana:sentence:create:update#body',
+        $id: 'wana:sentence:create#body',
         additionalProperties: false,
-        description: 'Create and update body schema for sentences',
+        description: 'Create body schema for sentences',
     }
 );
+
+export const SentenceUpdateSchema = Type.Partial(SentenceBodySchema, {
+    $id: 'wana:sentence:update#body',
+    additionalProperties: false,
+    description: 'Update body for a sentence',
+});
 
 export const SentencesSearchQuerySchema = Type.Object(
     {
@@ -91,9 +103,10 @@ export const SentencesGetSchema = Type.Object({
 
 export const SentencesListResponseSchema = Type.Object({
     data: Type.Array(SentenceSchema, { description: 'The list of sentences' }),
-    meta: Type.Object(MetaSchema),
+    meta: MetaSchema,
 });
 
 export type SentenceSearchQuery = Static<typeof SentencesSearchQuerySchema>;
 export type Sentence = Static<typeof SentenceSchema>;
 export type SenteceBody = Static<typeof SentenceBodySchema>;
+export type SentenceUpdateBody = Static<typeof SentenceUpdateSchema>;

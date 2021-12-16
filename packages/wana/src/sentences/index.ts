@@ -8,6 +8,7 @@ import {
     SentenceSchema,
     SentencesListResponseSchema,
     SentencesSearchQuerySchema,
+    SentenceUpdateSchema,
 } from './types';
 import { Type } from '@sinclair/typebox';
 
@@ -34,13 +35,12 @@ export async function sentencesRoute(
     );
 
     fastify.get(
-        `${PATH}/:id`,
+        `${PATH}/:_id`,
         {
             schema: {
-                params: Type.Pick(SentenceSchema, ['id']),
+                params: Type.Pick(SentenceSchema, ['_id']),
                 response: {
                     201: SentenceSchema,
-                    404: 'Not found',
                 },
             },
         },
@@ -61,14 +61,13 @@ export async function sentencesRoute(
     );
 
     fastify.put(
-        `${PATH}/:id`,
+        `${PATH}/:_id`,
         {
             schema: {
-                body: SentenceBodySchema,
-                params: Type.Pick(SentenceSchema, ['id']),
+                body: SentenceUpdateSchema,
+                params: Type.Pick(SentenceSchema, ['_id']),
                 response: {
                     200: SentenceSchema,
-                    404: 'Not found',
                 },
             },
         },
